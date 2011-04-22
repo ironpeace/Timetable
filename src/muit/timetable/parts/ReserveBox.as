@@ -111,7 +111,34 @@ package muit.timetable.parts
 		{
 			_isDragging = value;
 		}
+
 		
+		//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+		// currentUserId
+		//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+		private var _currentUserId:String = "";
+		public function get currentUserId():String
+		{
+			return _currentUserId;
+		}
+		public function set currentUserId(value:String):void
+		{
+			_currentUserId = value;
+		}
+		
+		
+		//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+		// superUserIds
+		//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+		private var _superUserIds:Array = new Array();
+		public function get superUserIds():Array
+		{
+			return _superUserIds;
+		}
+		public function set superUserIds(value:Array):void
+		{
+			_superUserIds = value;
+		}
 		
 		//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 		// CONSTRACTOR
@@ -192,6 +219,17 @@ package muit.timetable.parts
 			this.editBtn.setStyle("upSkin", editImg);
 			this.editBtn.setStyle("downSkin", editImg);
 			this.editBtn.setStyle("overSkin", editImg);
+			
+			if(this.isBtnVisible(this.reserve.reserverId))
+			{
+				this.deleteBtn.visible = true;
+				this.editBtn.visible = true;
+			}
+			else
+			{
+				this.deleteBtn.visible = false;
+				this.editBtn.visible = false;
+			}
 			
 			if(0 < mouseX && mouseX < unscaledWidth && 0 < mouseY && mouseY < unscaledHeight)
 			{
@@ -380,6 +418,24 @@ package muit.timetable.parts
 			}
 			
 			return false;
+		}
+		
+		private function isBtnVisible(reserverId:String):Boolean
+		{
+			//今の操作者が特権ユーザの一人なら
+			if(this.superUserIds.indexOf(this.currentUserId) != -1)
+			{
+				return true;
+			}
+			
+			if(this.currentUserId == reserverId)
+			{
+				return true;
+			}
+			else
+			{
+				return false;
+			}
 		}
 		
 	}//end of class

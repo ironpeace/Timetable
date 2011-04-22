@@ -182,6 +182,8 @@ package muit.timetable
 			for each(var rsv:Reserve in value)
 			{
 				var rb:ReserveBox = new ReserveBox();
+				rb.currentUserId = this.currentUserId;
+				rb.superUserIds = this.superUserIds;
 				rb.reserve = rsv;
 				rb = this.setReserveBoxPosition(rb);
 				this.addElement(rb);
@@ -476,7 +478,7 @@ package muit.timetable
 		//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 		// dayNames
 		//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-		private var _dayNames:Array = ["日","月","火","水","木","金","土"]
+		private var _dayNames:Array = ["日","月","火","水","木","金","土"];
 		public function get dayNames():Array
 		{
 			return _dayNames;
@@ -489,7 +491,32 @@ package muit.timetable
 			this.invalidateDisplayList();
 		}
 
-;
+		//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+		// currentUserId
+		//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+		private var _currentUserId:String = "";
+		public function get currentUserId():String
+		{
+			return _currentUserId;
+		}
+		public function set currentUserId(value:String):void
+		{
+			_currentUserId = value;
+		}
+
+		
+		//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+		// superUserIds
+		//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+		private var _superUserIds:Array = new Array();
+		public function get superUserIds():Array
+		{
+			return _superUserIds;
+		}
+		public function set superUserIds(value:Array):void
+		{
+			_superUserIds = value;
+		}
 		
 
 		//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
