@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:Skin xmlns:fx="http://ns.adobe.com/mxml/2009" 
+		xmlns:s="library://ns.adobe.com/flex/spark" 
+		xmlns:mx="library://ns.adobe.com/flex/mx">
+	<!-- host component -->
+	<fx:Metadata>
+		[HostComponent("muit.timetable.parts.ReserveBox")]
+	</fx:Metadata>
+	
+	<!-- states -->
+	<s:states>
+		<s:State name="disabled" />
+		<s:State name="normal" />
+	</s:states>
+	
+	<s:Rect id="background" 
+			left="0" right="0" top="0" bottom="0" 
+			radiusX="2" radiusY="2"
+			>
+		<s:fill>
+			<s:SolidColor id="bgFill" color="#FF0000"/>
+		</s:fill>
+		<s:stroke>
+			<s:SolidColorStroke color="#CCCCCC" weight="1" />
+		</s:stroke>
+		<s:alpha>
+			<fx:Number>0.6</fx:Number>
+		</s:alpha>
+	</s:Rect>
+	
+	<s:RectangularDropShadow id="shadow" 
+							 blurX="10" blurY="10" 
+							 alpha="0.4" 
+							 distance="5" 
+							 angle="90" 
+							 color="#000000" 
+							 left="0" top="0" right="0" bottom="0"/>
+	
+	<s:Group id="contentGroup" 
+			 left="0" right="0" top="0" bottom="0" 
+			 minWidth="0" minHeight="0">
+		<s:layout>
+			<s:VerticalLayout />
+		</s:layout>
+	</s:Group>
+	
+</s:Skin>

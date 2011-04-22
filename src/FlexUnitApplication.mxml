@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!-- これは自動的に生成されるファイルです。変更しないでください。 -->
+
+<s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+			   xmlns:s="library://ns.adobe.com/flex/spark" 
+			   xmlns:mx="library://ns.adobe.com/flex/mx" minWidth="955" minHeight="600" xmlns:flexui="flexunit.flexui.*" creationComplete="onCreationComplete()">
+	<fx:Script>
+		<![CDATA[
+			import test.timetable.util.DateUtilTest;
+			import test.timetable.Timetable;
+			import test.TimetableTest;
+			
+			public function currentRunTestSuite():Array
+			{
+				var testsToRun:Array = new Array();
+				testsToRun.push(test.TimetableTest);
+				testsToRun.push(test.timetable.Timetable);
+				testsToRun.push(test.timetable.util.DateUtilTest);
+				return testsToRun;
+			}
+			
+			
+			private function onCreationComplete():void
+			{
+				testRunner.runWithFlexUnit4Runner(currentRunTestSuite(), "Timetable");
+			}
+			
+		]]>
+	</fx:Script>
+	<fx:Declarations>
+		<!-- 非ビジュアルエレメント (サービス、値オブジェクトなど) をここに配置 -->
+	</fx:Declarations>
+	<flexui:FlexUnitTestRunnerUI id="testRunner">
+	</flexui:FlexUnitTestRunnerUI>
+</s:Application>

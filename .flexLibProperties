@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<flexLibProperties includeAllClasses="true" version="3">
+  <includeClasses>
+    <classEntry path="muit.timetable.Timetable"/>
+    <classEntry path="muit.timetable.skin.TimetableSkin"/>
+    <classEntry path="muit.timetable.model.Resource"/>
+    <classEntry path="muit.timetable.event.TimetableEvent"/>
+    <classEntry path="muit.timetable.model.Reserve"/>
+    <classEntry path="muit.timetable.parts.ReserveBox"/>
+    <classEntry path="muit.timetable.skin.ReserveBoxSkin"/>
+    <classEntry path="muit.timetable.util.DateUtil"/>
+    <classEntry path="test.timetable.util.DateUtilTest"/>
+    <classEntry path="test.TimetableTest"/>
+    <classEntry path="test.timetable.Timetable"/>
+    <classEntry path="muit.timetable.parts.LoadingCurtain"/>
+  </includeClasses>
+  <includeResources/>
+  <namespaceManifests/>
+</flexLibProperties>

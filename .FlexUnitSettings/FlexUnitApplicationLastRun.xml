@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testrun name="" >
+<testsuite  name="Default Test Suite" project="Timetable">
+<testsuite name="test.timetable:Timetable" type="testsuiteclass"/>
+<testsuite name="test.timetable.util:DateUtilTest" type="testsuiteclass"/>
+<testsuite name="test:TimetableTest" type="testcaseclass"/>
+</testsuite>
+</testrun>
