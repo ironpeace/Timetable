@@ -239,11 +239,13 @@ package muit.timetable
 			if(value < 0 && value > 24)
 			{
 				commonErrorHandler(getError(ERROR001_ID,ERROR001_NAME,ERROR001_MESSAGE));
+				return;
 			}
 			
 			if(value >= this.endTime)
 			{
 				commonErrorHandler(getError(ERROR003_ID,ERROR003_NAME,ERROR003_MESSAGE));
+				return;
 			}
 			
 			_startTime = value;
@@ -268,11 +270,13 @@ package muit.timetable
 			if(value < 1 && value > 25)
 			{
 				commonErrorHandler(getError(ERROR002_ID,ERROR002_NAME,ERROR002_MESSAGE));
+				return;
 			}
 			
 			if(value <= this.startTime)
 			{
 				commonErrorHandler(getError(ERROR003_ID,ERROR003_NAME,ERROR003_MESSAGE));
+				return;
 			}
 
 			_endTime = value;
