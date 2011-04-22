@@ -468,6 +468,25 @@ package muit.timetable
 		{
 			_errorHandler = value;
 		}
+		
+		//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+		// dayNames
+		//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+		private var _dayNames:Array = ["日","月","火","水","木","金","土"]
+		public function get dayNames():Array
+		{
+			return _dayNames;
+		}
+		public function set dayNames(value:Array):void
+		{
+			_dayNames = value;
+			
+			//曜日表示が変わったら描画し直しが必要
+			this.invalidateDisplayList();
+		}
+
+;
+		
 
 		//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 		// CONSTRUCTOR
@@ -1046,8 +1065,11 @@ package muit.timetable
 					//日付Txtの設置
 					var dayIdx0:int = c;
 					var day0:Date = this.days.getItemAt(dayIdx) as Date;
+					
+					var yobiStr0:String = "(" + this.dayNames[day0.getDay()] + ")";
+					
 					var targetDayTxt0:Text = this.dateTxtList[dayIdx];
-					targetDayTxt0.text = (day0.getMonth() + 1).toString() + "/" + day0.getDate();
+					targetDayTxt0.text = (day0.getMonth() + 1).toString() + "/" + day0.getDate() + yobiStr0;
 					targetDayTxt0.width = colWidth * resources.length;
 					targetDayTxt0.height = daysNameRowHeight;
 					targetDayTxt0.x = firstColWidth;
@@ -1067,8 +1089,11 @@ package muit.timetable
 						//日付Txtの設置
 						var dayIdx:int = c / resources.length;
 						var day:Date = this.days.getItemAt(dayIdx) as Date;
+
+						var yobiStr:String = "(" + this.dayNames[day.getDay()] + ")";
+
 						var targetDayTxt:Text = this.dateTxtList[dayIdx];
-						targetDayTxt.text = (day.getMonth() + 1).toString() + "/" + day.getDate();
+						targetDayTxt.text = (day.getMonth() + 1).toString() + "/" + day.getDate() + yobiStr;
 						targetDayTxt.width = colWidth * resources.length;
 						targetDayTxt.height = daysNameRowHeight;
 						targetDayTxt.x = firstColWidth + colWidth * c;
