@@ -4,6 +4,9 @@ package test.timetable.util
 	
 	import muit.timetable.util.DateUtil;
 	
+	import mx.charts.chartClasses.DataDescription;
+	import mx.collections.ArrayCollection;
+	
 	public class DateUtilTest
 	{		
 		[Before]
@@ -132,6 +135,59 @@ package test.timetable.util
 		public function testGetDaysLength_5():void
 		{
 			Assert.assertEquals(2, DateUtil.getDaysLength(new Date(2010,11,31), new Date(2011,0,1)));
+		}
+		
+		[Test]
+		public function testSortByDate_1():void
+		{
+			var targets:ArrayCollection = new ArrayCollection();
+			targets.addItem(new Date(2011,3,25));
+			targets.addItem(new Date(2011,3,23));
+			targets.addItem(new Date(2011,3,24));
+			
+			var valids:ArrayCollection = new ArrayCollection();
+			valids.addItem(new Date(2011,3,23));
+			valids.addItem(new Date(2011,3,24));
+			valids.addItem(new Date(2011,3,25));
+			
+			Assert.assertTrue(this.isValidSort(targets, valids));
+		}
+		
+		[Test]
+		public function testSortByDate_2():void
+		{
+			var targets:ArrayCollection = new ArrayCollection();
+			targets.addItem(new Date(2011,3,25));
+			targets.addItem(new Date(2011,3,24));
+			targets.addItem(new Date(2011,3,23));
+			
+			var valids:ArrayCollection = new ArrayCollection();
+			valids.addItem(new Date(2011,3,23));
+			valids.addItem(new Date(2011,3,24));
+			valids.addItem(new Date(2011,3,25));
+			
+			Assert.assertTrue(this.isValidSort(targets, valids));
+		}
+
+		
+		private function isValidSort(targets:ArrayCollection, valids:ArrayCollection):Boolean
+		{
+			var sorted:ArrayCollection = DateUtil.sortByDate(targets);
+			
+			if(sorted.length != valids.length) return false;
+			
+			var len:int = sorted.length;
+			for(var i:int=0; i<len; i++)
+			{
+				var s:Date = sorted.getItemAt(i) as Date;
+				var v:Date = valids.getItemAt(i) as Date;
+				if(s.getTime() != v.getTime())
+				{
+					return false;
+				}
+			}
+			
+			return true;
 		}
 
 	}

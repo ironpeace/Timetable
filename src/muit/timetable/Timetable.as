@@ -358,7 +358,6 @@ package muit.timetable
 
 		public function set dateRanges(value:Array):void
 		{
-
 			//初期値設定
 			if(value == null || value.length == 0)
 			{
@@ -369,25 +368,33 @@ package muit.timetable
 				value = [dr];
 			}
 			
-			var td:Date = value[0].rangeStart as Date;
-			var ed:Date = value[0].rangeEnd as Date;
-
-			if(this.maxDateRange < DateUtil.getDaysLength(td, ed))
+			var tmpDays:ArrayCollection = new ArrayCollection();
+			
+			var vl:int = value.length;
+			for(var i:int = 0; i<vl; i++)
+			{
+				var sd:Date = value[i].rangeStart as Date;
+				var ed:Date = value[i].rangeEnd as Date;
+				
+				while(DateUtil.date1LessThanOrEqualDate2(sd,ed))
+				{
+					tmpDays.addItem(sd);
+					sd = new Date(DateUtil.plusDay(sd,1));
+				}
+			}
+			
+			tmpDays = DateUtil.sortByDate(tmpDays);
+			tmpDays = DateUtil.removeDuplication(tmpDays);
+			
+			if(tmpDays.length > this.maxDateRange)
 			{
 				commonErrorHandler(getError(ERROR004_ID,ERROR004_NAME,ERROR004_MESSAGE));
 				return;
 			}
 			
+			//エラーチェック完了後、内部データを更新
 			_dateRanges = value;
-			
-			this.days = new ArrayCollection();
-			
-			while(DateUtil.date1LessThanOrEqualDate2(td,ed))
-			{
-				this.days.addItem(td);
-				td = new Date(DateUtil.plusDay(td,1));
-			}
-			
+			this.days = tmpDays;
 
 			this.invalidateDisplayList();
 		}
@@ -517,6 +524,8 @@ package muit.timetable
 		{
 			_superUserIds = value;
 		}
+		
+
 		
 
 		//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
